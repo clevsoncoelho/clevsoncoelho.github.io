@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Portfólio de Clevson Coelho — desenvolvedor full stack." />
+    <meta name="theme-color" content="#10100f" />
+    <title>Clevson Coelho — Software Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="cursor-glow"></div>
+    <div class="scroll-progress" id="scroll-progress"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Voltar ao início"><span>CC</span><b>clevson.coelho</b></a>
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a class="header-link" href="https://github.com/clevsoncoelho" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><i></i> disponível para criar · pernambuco, br</p>
+          <h1>Transformando<br /><em>ideias</em> em código.</h1>
+          <p class="hero-text">Sou Clevson Coelho, desenvolvedor de software e entusiasta full stack. Construo experiências digitais úteis, bonitas e que funcionam de verdade.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projetos">Ver projetos <span>↓</span></a>
+            <a class="button button-ghost" href="https://github.com/clevsoncoelho" target="_blank" rel="noreferrer">Abrir GitHub <span>↗</span></a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="avatar-wrap"><span class="availability"><i></i> online agora</span><img id="profile-avatar" src="https://avatars.githubusercontent.com/u/214200498?v=4" alt="Foto de Clevson Coelho" /><div class="avatar-caption">full stack<br /><b>developer</b></div></div>
+          <div class="code-card"><span class="code-muted">const</span> <span class="code-accent">developer</span> = {<br /><span class="code-indent">name: <span class="code-string">'Clevson'</span>,</span><br /><span class="code-indent">status: <span class="code-string">'building'</span></span><br />};<b>✦</b></div>
+        </div>
+      </section>
+
+      <div class="marquee" aria-hidden="true"><div>BUILDING DIGITAL EXPERIENCES <span>✦</span> LEARNING EVERY DAY <span>✦</span> TURNING IDEAS INTO CODE <span>✦</span> BUILDING DIGITAL EXPERIENCES <span>✦</span> LEARNING EVERY DAY <span>✦</span></div></div>
+      <section class="stats-strip" id="stats" aria-label="Estatísticas do GitHub">
+        <div><strong id="repo-count">—</strong><span>repositórios públicos</span></div>
+        <div><strong id="followers-count">—</strong><span>seguidores</span></div>
+        <div><strong id="following-count">—</strong><span>seguindo</span></div>
+        <div><strong id="language-count">—</strong><span>linguagens exploradas</span></div>
+        <p class="sync-status" id="sync-status" aria-live="polite"><i></i> sincronizando GitHub...</p>
+      </section>
+
+      <section class="section about-section" id="sobre">
+        <div class="section-label"><span>01</span><span>sobre mim</span></div>
+        <div class="about-grid">
+          <div>
+            <h2>Curioso por natureza.<br /><span>Construtor por escolha.</span></h2>
+          </div>
+          <div class="about-content">
+            <p>Minha jornada é guiada pela curiosidade: entender como as coisas funcionam, aprender novas ferramentas e transformar problemas em experiências simples.</p>
+            <p>Entre frontend e backend, gosto de estar perto de todo o processo — da primeira ideia até o produto pronto.</p>
+            <div class="tags"><span>Full stack</span><span>Produtos digitais</span><span>Aprendizado contínuo</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section projects-section" id="projetos">
+        <div class="section-heading">
+          <div class="section-label"><span>02</span><span>projetos selecionados</span></div>
+          <p>Uma seleção do que tenho construído<br />e explorado no GitHub.</p>
+        </div>
+        <div class="project-tools">
+          <div class="search-wrap"><span>⌕</span><input id="project-search" type="search" placeholder="Buscar projeto..." aria-label="Buscar projeto" /></div>
+          <div id="filter-buttons" class="filter-buttons"><button class="filter active" data-filter="all">Todos</button></div>
+        </div>
+        <div id="project-grid" class="project-grid" aria-live="polite"><div class="loading">Carregando projetos<span>...</span></div></div>
+        <p id="project-error" class="project-error" hidden>Não foi possível carregar os repositórios agora. <a href="https://github.com/clevsoncoelho" target="_blank" rel="noreferrer">Ver diretamente no GitHub ↗</a></p>
+      </section>
+
+      <section class="section contact-section" id="contato">
+        <div class="contact-card">
+          <p class="eyebrow"><i></i> vamos conversar</p>
+          <h2>Tem uma ideia?<br /><em>Vamos construir.</em></h2>
+          <a class="button button-primary" href="https://github.com/clevsoncoelho" target="_blank" rel="noreferrer">Falar comigo no GitHub <span>↗</span></a>
+        </div>
+        <div class="contact-aside"><p>Disponível para aprender, colaborar e criar projetos interessantes.</p><div class="cross">+</div><a href="https://github.com/clevsoncoelho" target="_blank" rel="noreferrer">github.com/clevsoncoelho ↗</a></div>
+      </section>
+    </main>
+
+    <footer><span>© <span id="year"></span> Clevson Coelho</span><span>feito com curiosidade e código</span><a href="#top">voltar ao topo ↑</a></footer>
+    <script src="script.js"></script>
+  </body>
+</html>
