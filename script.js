@@ -3,7 +3,7 @@ const state = { repos: [], filter: "all", query: "" };
 const syncInterval = 5 * 60 * 1000;
 let syncInFlight = false;
 let lastSyncAt = 0;
-const fallbackProfile = { public_repos: 8, followers: 0, following: 1 };
+const fallbackProfile = { public_repos: 8, followers: 0, following: 1, language_count: 3 };
 
 const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char]));
 const formatNumber = (value) => new Intl.NumberFormat("pt-BR", { notation: "compact", maximumFractionDigits: 1 }).format(value || 0);
@@ -14,7 +14,8 @@ function updateStats(profile, repos) {
   document.querySelector("#repo-count").textContent = formatNumber(profile.public_repos);
   document.querySelector("#followers-count").textContent = formatNumber(profile.followers);
   document.querySelector("#following-count").textContent = formatNumber(profile.following);
-  document.querySelector("#language-count").textContent = new Set(repos.map((repo) => repo.language).filter(Boolean)).size;
+  const languageCount = profile.language_count ?? new Set(repos.map((repo) => repo.language).filter(Boolean)).size;
+  document.querySelector("#language-count").textContent = languageCount;
 }
 
 function updateSyncStatus(message, isError = false) {
