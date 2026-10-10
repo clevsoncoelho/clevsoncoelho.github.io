@@ -39,18 +39,18 @@
   .hero h1{font-size:clamp(46px,15vw,62px);overflow-wrap:normal}
   .hero-text{max-width:100%;font-size:13px}
   .hero-actions{flex-wrap:wrap}
-  .hero-art{width:100%;height:auto;min-height:500px;margin-top:34px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:4px;overflow:visible}
+  .hero-art{width:100%;height:auto;min-height:560px;margin-top:34px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:18px;overflow:visible;isolation:isolate}
   .orbit{pointer-events:none}
   .orbit-one{width:min(300px,92vw);height:140px}
   .orbit-two{width:min(220px,68vw);height:330px}
-  .avatar-wrap{flex:0 0 260px;width:205px;height:260px;transform:scale(.92) rotate(5deg);margin:0}
+  .avatar-wrap{flex:0 0 260px;width:205px;height:260px;transform:scale(.92) rotate(5deg);margin:12px 0 0}
   .avatar-wrap img,.avatar-wrap:after{width:175px;height:220px}
   .avatar-wrap:after{left:13px;top:16px}
   .availability{right:0;top:12px;font-size:8px}
   .avatar-caption{bottom:12px;right:1px}
-  .code-card{flex:0 0 auto;width:min(248px,calc(100vw - 72px));padding:21px 18px;font-size:11px;line-height:1.85;transform:rotate(-3deg);margin-top:-8px}
+  .code-card{flex:0 0 auto;width:min(248px,calc(100vw - 72px));padding:21px 18px;font-size:11px;line-height:1.85;transform:rotate(-3deg);margin:0;z-index:2}
   .code-card b{right:-23px;top:8px}
-  .marquee{position:relative;contain:paint}
+  .marquee{position:relative;contain:paint;background:var(--bg);z-index:1}
   .marquee div{will-change:transform}
   .stats-strip{grid-template-columns:repeat(2,minmax(0,1fr));padding:23px 20px}
   .stats-strip div{min-width:0}
