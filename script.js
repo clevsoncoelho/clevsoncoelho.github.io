@@ -1,6 +1,8 @@
 const username = "clevsoncoelho";
 const state = { repos: [], filter: "all", query: "" };
 const syncInterval = 5 * 60 * 1000;
+let syncInFlight = false;
+let lastSyncAt = 0;
 
 const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char]));
 const formatNumber = (value) => new Intl.NumberFormat("pt-BR", { notation: "compact", maximumFractionDigits: 1 }).format(value || 0);
@@ -47,6 +49,8 @@ function renderProjects() {
 }
 
 async function loadGitHubData() {
+  if (syncInFlight || Date.now() - lastSyncAt < 30000) return;
+  syncInFlight = true;
   try {
     updateSyncStatus("sincronizando GitHub...");
     const [profileResponse, reposResponse] = await Promise.all([
@@ -56,17 +60,29 @@ async function loadGitHubData() {
     if (!profileResponse.ok || !reposResponse.ok) throw new Error("GitHub API indisponível");
     const [profile, repos] = await Promise.all([profileResponse.json(), reposResponse.json()]);
     state.repos = repos.filter((repo) => !repo.fork);
+    localStorage.setItem("github-portfolio-cache", JSON.stringify({ profile, repos: state.repos, syncedAt: Date.now() }));
     updateStats(profile, state.repos);
     renderFilters();
     renderProjects();
     updateSyncStatus(`atualizado às ${new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" })}`);
+    lastSyncAt = Date.now();
   } catch (error) {
-    if (!state.repos.length) {
+    const cached = localStorage.getItem("github-portfolio-cache");
+    if (!state.repos.length && cached) {
+      const saved = JSON.parse(cached);
+      state.repos = saved.repos || [];
+      updateStats(saved.profile || {}, state.repos);
+      renderFilters();
+      renderProjects();
+      updateSyncStatus("exibindo última sincronização disponível", true);
+    } else if (!state.repos.length) {
       document.querySelector("#project-grid").innerHTML = "";
       document.querySelector("#project-error").hidden = false;
+      updateSyncStatus("não foi possível sincronizar agora", true);
     }
-    updateSyncStatus("não foi possível sincronizar agora", true);
     console.error("Não foi possível carregar dados do GitHub:", error);
+  } finally {
+    syncInFlight = false;
   }
 }
 
