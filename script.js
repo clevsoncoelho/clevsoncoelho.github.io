@@ -3,6 +3,7 @@ const state = { repos: [], filter: "all", query: "" };
 const syncInterval = 5 * 60 * 1000;
 let syncInFlight = false;
 let lastSyncAt = 0;
+const fallbackProfile = { public_repos: 8, followers: 0, following: 1 };
 
 const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" }[char]));
 const formatNumber = (value) => new Intl.NumberFormat("pt-BR", { notation: "compact", maximumFractionDigits: 1 }).format(value || 0);
@@ -71,14 +72,15 @@ async function loadGitHubData() {
     if (!state.repos.length && cached) {
       const saved = JSON.parse(cached);
       state.repos = saved.repos || [];
-      updateStats(saved.profile || {}, state.repos);
+      updateStats({ ...fallbackProfile, ...(saved.profile || {}) }, state.repos);
       renderFilters();
       renderProjects();
       updateSyncStatus("exibindo última sincronização disponível", true);
     } else if (!state.repos.length) {
+      updateStats(fallbackProfile, []);
       document.querySelector("#project-grid").innerHTML = "";
       document.querySelector("#project-error").hidden = false;
-      updateSyncStatus("não foi possível sincronizar agora", true);
+      updateSyncStatus("dados exibidos do último snapshot", true);
     }
     console.error("Não foi possível carregar dados do GitHub:", error);
   } finally {
